@@ -1,5 +1,27 @@
-
 # ToDayGAN
+
+## 训练：
+python train.py --name <experiment_name> --dataroot ./datasets/<your_dataset> --n_domains <N> --niter <num_epochs_constant_LR> --niter_decay <num_epochs_decaying_LR>
+```
+Checkpoints 将被保存在 `./checkpoints/<experiment_name>/`
+- Fine-tuning/Resume training:
+```
+python train.py --continue_train --which_epoch <checkpoint_number_to_load> --name <experiment_name> --dataroot ./datasets/<your_dataset> --n_domains <N> --niter <num_epochs_constant_LR> --niter_decay <num_epochs_decaying_LR>
+
+## 测试：
+python test.py --phase test --serial_test --name <experiment_name> --dataroot ./datasets/<your_dataset> --n_domains <N> --which_epoch <checkpoint_number_to_load>
+下面我用预训练的模型对ToDayGAN model用更多图片进行了测试。运行test.py 文件，
+--serial_test 表示按顺序从文件夹中读取每个图像一次，--name表示预训练模型的名字，dataroot表示测试集，n_domains_2表示两个域，
+150个 epoch，并且把图片缩放到512像素再载入。
+
+如果使用这个预先训练的模型，`<your_test_dir>`应该包含两个子文件夹`test0`&`test1`，分别包含要测试的白天和夜间图像（因为我是按照这种顺序训练的）`test0`可以是空的，如果您不关心将白天的图像转换为晚上的图像，但只需要存在，不破坏代码。
+结果将被保存在results文件中。
+
+
+
+
+# 以下是原作者的
+
 
 This is our PyTorch implementation for ToDayGAN.
 Code was written by [Asha Anoosheh](https://github.com/aanoosheh) (built upon [ComboGAN](https://github.com/AAnoosheh/ComboGAN))
