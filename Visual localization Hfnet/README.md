@@ -4,46 +4,61 @@
   </b>
 </p>
 
-1 
-make install
+# HF-Net: Robust Hierarchical Localization at Large Scale 
+
+# 步骤1： make install
+```bash
 /home/guohao/fangzheng/hfnet_local_feature_evaluation/DATA_PATH/
 /home/guohao/fangzheng/hfnet_local_feature_evaluation/EXPER_PATH/
+```
 
-2执行特征提取
-2.1#基于NetVLAD生成aachen所有图像的global descriptors
+
+# 步骤2： 执行特征提取
+## 步骤2.1：基于NetVLAD生成aachen所有图像的global descriptors
 aachen：
-(成功)CUDA_VISIBLE_DEVICES=3 python3 hfnet/export_predictions.py hfnet/configs/netvlad_export_aachen.yaml netvlad/aachen --keys global_descriptor
-robotcar：
+```bash
+CUDA_VISIBLE_DEVICES=3 python3 hfnet/export_predictions.py hfnet/configs/netvlad_export_aachen.yaml netvlad/aachen --keys global_descriptor
+```
+robotcar:
+```robotcar
 CUDA_VISIBLE_DEVICES=3 python3 hfnet/export_predictions.py hfnet/configs/netvlad_export_robotcar.yaml netvlad/robotcar --keys global_descriptor
+```
 // [需要修改netvlad_export_robotcar.yaml中的内容]
-2.2 #对底库图像的superpoint特征提取
+## 步骤2.2 对底库图像的superpoint特征提取
 （成功）aachen：
+```
 CUDA_VISIBLE_DEVICES=0 python3 hfnet/export_predictions.py hfnet/configs/superpoint_export_aachen_db.yaml superpoint/aachen --keys keypoints,scores,local_descriptor_map
 #对查询图像的superpoint特征提取
 CUDA_VISIBLE_DEVICES=0 python3 hfnet/export_predictions.py hfnet/configs/superpoint_export_aachen_queries.yaml superpoint/aachen --keys keypoints,scores,local_descriptor_map
+```
 robotcar：
+```
 （完成）CUDA_VISIBLE_DEVICES=4 python3 hfnet/export_predictions.py hfnet/configs/superpoint_export_robotcar_db.yaml superpoint/robotcar --keys keypoints,scores,local_descriptor_map
 #对查询图像的superpoint特征提取
 （完成）CUDA_VISIBLE_DEVICES=3 python3 hfnet/export_predictions.py hfnet/configs/superpoint_export_robotcar_queries.yaml superpoint/robotcar --keys keypoints,scores,local_descriptor_map
+```
 [需要修改superpoint_export_robotcar_queries.yaml中的内容]
 
-2.3 #对底库图像的hfnet特征提取
+## 步骤2.3 对底库图像的hfnet特征提取
 python3 hfnet/export_predictions.py hfnet/configs/hfnet_export_aachen_db.yaml hfnet/aachen --keys keypoints,scores,local_descriptor_map
 #对查询图像的hfnet特征提取
 python3 hfnet/export_predictions.py hfnet/configs/hfnet_export_aachen_queries.yaml hfnet/aachen --keys keypoints,scores,local_descriptor_map
 
-
-3.基于NetVLAD及superpoint构建的sfm场景模型的查询图像位姿解算
+# 步骤3： 基于NetVLAD及superpoint构建的sfm场景模型的查询图像位姿解算
 For Aachen:
+```
 CUDA_VISIBLE_DEVICES=0 python3 hfnet/evaluate_aachen.py /home/guohao/fangzheng/hfnet_local_feature_evaluation/DATA_PATH/aachen/superpoint_sfm/ night1 --local_method superpoint --global_method netvlad --build_db --queries night_time --export_poses
 （可用）CUDA_VISIBLE_DEVICES=4 python3 hfnet/evaluate_aachen.py /home/guohao/fangzheng/hfnet_local_feature_evaluation/DATA_PATH/aachen/superpoint_sfm/ night --local_method superpoint --global_method netvlad --build_db --queries night_time --export_poses
+```
 For RobotCar:
+```
 //night2day
 CUDA_VISIBLE_DEVICES=3 python3 hfnet/evaluate_robotcar.py /home/guohao/fangzheng/hfnet_local_feature_evaluation/DATA_PATH/robotcar/superpoint_sfm/ night2day --local_method superpoint --global_method netvlad --build_db --queries night2day --export_poses
 //night-rain2day:
 CUDA_VISIBLE_DEVICES=3 python3 hfnet/evaluate_robotcar.py /home/guohao/fangzheng/hfnet_local_feature_evaluation/DATA_PATH/robotcar/superpoint_sfm/ night-rain2day --local_method superpoint --global_method netvlad --build_db --queries night-rain2day --export_poses
+```
 
-# HF-Net: Robust Hierarchical Localization at Large Scale
+# 原作者
 
 This repository accompanies our CVPR 2019 paper *[From Coarse to Fine: Robust Hierarchical Localization at Large Scale](https://arxiv.org/abs/1812.03506)*. We introduce a 6-DoF visual localization method that is accurate, scalable, and efficient, using HF-Net, a monolithic deep neural network for descriptor extraction. The proposed solution achieves state-of-the-art accuracy on several large-scale public benchmarks while running in real-time.
 
