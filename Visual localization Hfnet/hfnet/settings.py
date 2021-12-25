@@ -1,0 +1,8 @@
+DATA_PATH = 'D:datasets'
+EXPER_PATH = 'C:Users12399DesktopGANproject2020-12-31-HfnetEXPER_PATH'
+DATA_PATH = 'D:datasets'
+EXPER_PATH = 'C:Users12399DesktopGANproject2020-12-31-HfnetEXPER_PATH'
+DATA_PATH = 'D:datasets'
+EXPER_PATH = 'C:Users12399DesktopGANproject2020-12-31-HfnetEXPER_PATH'
+DATA_PATH = 'D:datasets'
+EXPER_PATH = 'C:Users12399DesktopGANproject2020-12-31-HfnetEXPER_PATH'

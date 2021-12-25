@@ -1,0 +1,15 @@
+README.md
+setup.py
+hfnet/__init__.py
+hfnet/evaluate_aachen.py
+hfnet/evaluate_cmu.py
+hfnet/evaluate_robotcar.py
+hfnet/export_model.py
+hfnet/export_predictions.py
+hfnet/settings.py
+hfnet/time_model.py
+hfnet/train.py
+hfnet.egg-info/PKG-INFO
+hfnet.egg-info/SOURCES.txt
+hfnet.egg-info/dependency_links.txt
+hfnet.egg-info/top_level.txt

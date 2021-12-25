@@ -1,0 +1,12 @@
+numpy
+scipy
+opencv-python
+tqdm
+pyyaml
+flake8
+jupyter
+matplotlib
+protobuf
+sklearn
+pillow
+deepdish
