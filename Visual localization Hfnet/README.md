@@ -2,6 +2,18 @@
 # HF-Net: Robust Hierarchical Localization at Large Scale 
 ![Image text](https://github.com/zhufangzheng/Images/blob/3b6f88f1a38d86afc04386c45cdf00edc4256568/teaser.jpg)
 
+我使用TodayGAN+Superpoint+Netvlad的结果和论文中实验结果对比如图所示：（The Visual Localization Benchmark:https://www.visuallocalization.net/）
+
+Aachen的结果：
+
+![Image text](https://github.com/zhufangzheng/Images/blob/b5c0902e8284d95ae0f64a5a0cb1df46dae65d77/aachen.png)
+
+RobotCar Seasons的结果：
+
+![Image text](https://github.com/zhufangzheng/Images/blob/b5c0902e8284d95ae0f64a5a0cb1df46dae65d77/robotcar.png)
+
+
+以下是Visual localization实现步骤：（TodayGAN在另一个文件夹中）
 
 # 步骤0：Setup
 1.1先执行make install，生成编译后的文件DATA_PATH和EXPER_PATH
@@ -117,6 +129,12 @@ CUDA_VISIBLE_DEVICES=3 python3 hfnet/evaluate_robotcar.py /home/guohao/fangzheng
 //night-rain2day:
 CUDA_VISIBLE_DEVICES=3 python3 hfnet/evaluate_robotcar.py /home/guohao/fangzheng/hfnet_local_feature_evaluation/DATA_PATH/robotcar/superpoint_sfm/ night-rain2day --local_method superpoint --global_method netvlad --build_db --queries night-rain2day --export_poses
 ```
+最后把结果提交到（The Visual Localization Benchmark:https://www.visuallocalization.net/）网站中
+
+RobotCar Seasons的示例结果：
+
+![Image text](https://github.com/zhufangzheng/Images/blob/cfe5f2712b0f464099c4ed7359912f272e985b01/%E7%BB%93%E6%9E%9C.png)
+
 
 # 原作者
 
