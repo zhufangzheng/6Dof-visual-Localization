@@ -1,17 +1,19 @@
-<p align="center">
-  <b>
-    ➡️ For state-of-the-art visual localization and SfM, checkout our new toolbox hloc: </br><a href="https://github.com/cvg/Hierarchical-Localization/">cvg/Hierarchical-Localization</a> 🔥
-  </b>
-</p>
 
 # HF-Net: Robust Hierarchical Localization at Large Scale 
 
-# 步骤1： make install
+# 步骤1： 数据准备
+1.1先执行make install，生成编译后的文件DATA_PATH和EXPER_PATH
 ```bash
 /home/guohao/fangzheng/hfnet_local_feature_evaluation/DATA_PATH/
 /home/guohao/fangzheng/hfnet_local_feature_evaluation/EXPER_PATH/
 ```
+1.2 NetVLAD预训练权重，存放在编译hfnet后生成的$DATA_PATH/weights/路径下
 
+1.3 aachen和robotcar数据下载，存放在编译hfnet后生成的$DATA_PATH/路径下
+
+1.4 基于superpoint生成的aachen三维点云场景
+
+1.5 aachen数据对应的每张图像相机内参文件
 
 # 步骤2： 执行特征提取
 ## 步骤2.1：基于NetVLAD生成aachen所有图像的global descriptors
@@ -59,6 +61,14 @@ CUDA_VISIBLE_DEVICES=3 python3 hfnet/evaluate_robotcar.py /home/guohao/fangzheng
 ```
 
 # 原作者
+
+
+<p align="center">
+  <b>
+    ➡️ For state-of-the-art visual localization and SfM, checkout our new toolbox hloc: </br><a href="https://github.com/cvg/Hierarchical-Localization/">cvg/Hierarchical-Localization</a> 🔥
+  </b>
+</p>
+
 
 This repository accompanies our CVPR 2019 paper *[From Coarse to Fine: Robust Hierarchical Localization at Large Scale](https://arxiv.org/abs/1812.03506)*. We introduce a 6-DoF visual localization method that is accurate, scalable, and efficient, using HF-Net, a monolithic deep neural network for descriptor extraction. The proposed solution achieves state-of-the-art accuracy on several large-scale public benchmarks while running in real-time.
 
